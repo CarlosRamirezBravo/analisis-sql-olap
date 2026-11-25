@@ -1,19 +1,22 @@
-#  Proyecto de Análisis OLAP & Consultas SQL Avanzadas
+# Proyecto de Análisis OLAP y Consultas SQL
 
 ## Descripción del Proyecto
-Este repositorio contiene la resolución práctica de un caso de estudio y examen analítico utilizando **SQL** sobre un esquema de base de datos multidimensional (Data Warehouse / Modelo Estrella) para la empresa *Aglets Intl*. El objetivo principal fue extraer, transformar y responder preguntas de negocio críticas utilizando consultas avanzadas en **MySQL**.
+Este repositorio reúne la resolución del examen final de un diplomado en herramientas de SQL y Python, aplicando **SQL** sobre un esquema dimensional tipo estrella (*Data Warehouse*) para la empresa *Aglets Intl*. El objetivo fue responder preguntas de negocio y analizar ventas, clientes, productos y periodos temporales mediante consultas en **MySQL**.
 
-##  Tecnologías y Herramientas Utilizadas
+## Archivo del Proyecto
+* `Ramirez_Carlos_Final.sql`: script con las consultas analíticas y comentarios explicativos sobre el esquema `Aglets_Intl_OLAP`.
+
+## Tecnologías y Herramientas Utilizadas
 * **Base de Datos:** MySQL / MySQL Workbench
-* **Lenguaje:** SQL (DDL, DML, Consultas complejas)
-* **Técnicas Aplicadas:** Joins multitabla, Agregaciones (`SUM`, `COUNT`), Subconsultas correlacionadas y dinámicas, Filtrado temporal y optimización de conjuntos de datos.
+* **Lenguaje:** SQL (consultas analíticas `SELECT`, uniones, agregaciones y subconsultas)
+* **Técnicas Aplicadas:** `JOIN` entre tabla de hechos y dimensiones, funciones de agregación (`SUM`, `COUNT`, `COUNT(DISTINCT ...)`), filtrado por tiempo y categoría, ordenamiento y subconsultas en `HAVING`.
 
-##  Estructura del Esquema (Modelo Estrella)
-* `FactTable`: Tabla de hechos que almacena transacciones, ingresos (`Revenue`) y unidades vendidas (`Units`).
-* `CustDim`: Dimensión de Clientes (ID, Nombre, Ciudad, País).
-* `ProdDim`: Dimensión de Productos (ID, Nombre, Color, Material, Categoría).
-* `TimeDim`: Dimensión de Tiempo (Fecha, Semana, Mes, Trimestre, Año).
+## Estructura del Esquema (Modelo Estrella)
+* `FactTable`: tabla de hechos con transacciones, ingresos (`Revenue`) y unidades (`Units`).
+* `CustDim`: dimensión de clientes (`CustID`, `CustName`, `CustCity`, `CustCountry`).
+* `ProdDim`: dimensión de productos (`ProdID`, `ProdName`, `ProdColor`, `ProdMaterial`, `ProdCategory`).
+* `TimeDim`: dimensión de tiempo (`DateID`, `Week`, `Month`, `Quarter`, `Year`).
 
-##  Ejemplos de Consultas Destacadas en el Script
-1. **Análisis de Rendimiento por Categoría y Tiempo:** Identificación de trimestres con mayores ingresos para categorías específicas de productos.
-2. **Consultas Dinámicas Escalables (Subconsultas):** Resolución de problemas complejos de supply chain utilizando subconsultas en la cláusula `HAVING` para garantizar que la lógica se adapte automáticamente si se agregan nuevos registros (como nuevos colores de productos), evitando constantes estáticas.
+## Consultas Destacadas en el Script
+1. **Análisis por Categoría y Periodo:** Identificación del trimestre y año con mayores ingresos y unidades vendidas para la categoría `Fashion`.
+2. **Consultas Dinámicas con Subconsultas:** Evaluación de semanas y años en los que se vendieron todos los colores disponibles usando una subconsulta en `HAVING` en lugar de un número fijo, para que el cálculo se adapte si se incorporan nuevos colores.
